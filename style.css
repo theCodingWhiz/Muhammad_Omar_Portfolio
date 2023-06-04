@@ -88,6 +88,10 @@ section {
   display: none;
 }
 
+h1 {
+  text-shadow: 0 0 10px #74ee15, 0 0 20px #4deeea;
+}
+
 .home {
   display: flex;
   justify-content: center;
