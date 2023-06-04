@@ -71,23 +71,46 @@ const typed = new Typed(".multiple-text", {
 });
 
 // Send email using SMTP.js
-Email.send({
-  SecureToken: "cc3b16c3-6882-481a-b6c8-40f6e2bd9de3",
-  Host: "smtp.elasticemail.com",
-  Username: "omar@thecodingwhiz.com",
-  Password: "Energy292!!",
-  To: "omar@thecodingwhiz.com",
-  From: emailAddress,
-  Subject: emailSubject,
-  Body: emailBody,
-  Port: 587, // Updated port number
-  SMTPSecure: "tls", // Use TLS for secure communication
-}).then(function () {
-  alert("Email sent successfully!");
-  // Clear form fields after successful submission
-  document.querySelector('input[name="fullName"]').value = "";
-  document.querySelector('input[name="emailAddress"]').value = "";
-  document.querySelector('input[name="phoneNumber"]').value = "";
-  document.querySelector('input[name="emailSubject"]').value = "";
-  document.querySelector('textarea[name="message"]').value = "";
-});
+// Attach event listener to form submission
+document
+  .querySelector(".contact-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get form field values
+    let fullName = document.querySelector('input[name="fullName"]').value;
+    let emailAddress = document.querySelector(
+      'input[name="emailAddress"]'
+    ).value;
+    let phoneNumber = document.querySelector('input[name="phoneNumber"]').value;
+    let emailSubject = document.querySelector(
+      'input[name="emailSubject"]'
+    ).value;
+    let message = document.querySelector('textarea[name="message"]').value;
+
+    // Create email body
+    let emailBody = "Full Name: " + fullName + "<br>";
+    emailBody += "Email Address: " + emailAddress + "<br>";
+    emailBody += "Phone Number: " + phoneNumber + "<br>";
+    emailBody += "Message: " + message;
+
+    // Send email using SMTP.js
+ // Send email using SMTP.js
+// Attach event listener to form submission
+document.querySelector("#contact-form").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent default form submission
+
+  // Get form field values
+  let fullName = document.querySelector('input[name="fullName"]').value;
+  let emailAddress = document.querySelector('input[name="emailAddress"]').value;
+  let phoneNumber = document.querySelector('input[name="phoneNumber"]').value;
+  let emailSubject = document.querySelector('input[name="emailSubject"]').value;
+  let message = document.querySelector('textarea[name="message"]').value;
+
+  // Create email body
+  let emailBody = "Full Name: " + fullName + "<br>";
+  emailBody += "Email Address: " + emailAddress + "<br>";
+  emailBody += "Phone Number: " + phoneNumber + "<br>";
+  emailBody += "Message: " + message;
+
+  // Send email using SMTP.js
