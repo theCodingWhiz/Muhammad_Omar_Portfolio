@@ -1,50 +1,53 @@
-//toggle icon navbar
-let menuIcon = document.querySelector("#menu-icon");
-let navbar = document.querySelector(".navbar");
+// Toggle icon navbar
+let menuIcons = document.querySelectorAll("#menu-icon");
+let navbars = document.querySelectorAll(".navbar");
 
-menuIcon.onclick = () => {
-  menuIcon.classList.toggle("bx bx-x");
-  navbar.classList.toggle("active");
-};
+menuIcons.forEach((menuIcon, index) => {
+  menuIcon.onclick = () => {
+    menuIcon.classList.toggle("bx-x");
+    navbars[index].classList.toggle("active");
+  };
+});
 
-// scroll section active link
+// Scroll section active link
 let sections = document.querySelectorAll("section");
-let navLinks = document.querySelectorAll(" header nav a");
+let navLinks = document.querySelectorAll("header nav a");
 
 window.onscroll = () => {
   sections.forEach((sec) => {
     let top = window.scrollY;
-    let offset = sec.offsetTop - 200;
+    let offset = sec.offsetTop - 150;
     let height = sec.offsetHeight;
     let id = sec.getAttribute("id");
 
     if (top >= offset && top < offset + height) {
-      navLinks.forEach((links) => {
-        links.classList.remove("active");
-        document
-          .querySelector("header nav a[href*=" + id + "]")
-          .classList.add("active");
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
       });
+      document
+        .querySelectorAll(`header nav a[href="#${id}"]`)
+        .forEach((link) => {
+          link.classList.add("active");
+        });
     }
   });
 
-  let header = document.querySelector("header");
+  let headers = document.querySelectorAll("header");
 
-  header.classList.toggle("sticky", window.scrollY > 100);
+  headers.forEach((header) => {
+    header.classList.toggle("sticky", window.scrollY > 100);
+  });
 
-  //remove toggle menu when click link
-  menuIcon.classList.remove("bx bx-x");
-  navbar.classList.remove("active");
+  // Remove toggle menu when click link
+  menuIcons.forEach((menuIcon) => {
+    menuIcon.classList.remove("bx-x");
+  });
+  navbars.forEach((navbar) => {
+    navbar.classList.remove("active");
+  });
 };
 
-// scroll reveal animation
-scrollReveal({
-  //   reset: true,
-  distance: "80px",
-  duration: 2000,
-  delay: 200,
-});
-
+// Scroll reveal animation
 ScrollReveal().reveal(".home-content, heading", { origin: "top" });
 ScrollReveal().reveal(
   ".home-img, .service-container, .portfolio-box, .contact form",
@@ -53,7 +56,7 @@ ScrollReveal().reveal(
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 
-//typed js
+// Typed.js
 const typed = new Typed(".multiple-text", {
   strings: [
     "Web Developer",
